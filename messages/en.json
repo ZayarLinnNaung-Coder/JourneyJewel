@@ -1,0 +1,16 @@
+{
+  "BenefiData": {
+    "interactive_video": "Interactive video lessons",
+    "interactive_video_desc": "Engage with dynamic video content featuring expert instructors",
+    "real_time_tracking": "Real-time progress tracking",
+    "real_time_tracking_desc": "Monitor your learning journey with detailed progress reports",
+    "expert_teacher": "Expert teacher collaboration",
+    "expert_teacher_desc": "Connect with experienced educators for personalized guidance, receive feedback",
+    "adaptive_learning": "Adaptive learning paths",
+    "adaptive_learning_desc": "Experience a personalized learning journey tailored to your individual needs",
+    "secure_platform": "Secure & user-friendly platform",
+    "secure_platform_desc": "Enjoy a safe and easy-to-use platform with robust security measures",
+    "recognized_certificate": "Recognized certificate",
+    "recognized_certificate_desc": "Earn a valuable and industry-recognized certificate upon successful completion"
+  }
+}

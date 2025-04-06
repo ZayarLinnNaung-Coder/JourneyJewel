@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "sonic-verbena-447607-m0",
+  "private_key_id": "5e0436a08315305f26744822e3fe70dee83eda4b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD1J1NJI54Su8KD\n8vjDGjlI6SEsJyCNZmRqH45N8ovTZrOWcksLAm0mMB5LCTF6Q5PYdhlEu0ZmM/Tu\ncnb433xiJCs5AYDCLb9CeuFiL5ukkIs+ujhjHuXhwgt3ZTQWrGB9ENDQSSrpdoTr\nrvM481wMaupxoZrRo6sxHPlXwY+GMmkotc8fg8PI37/O0xpMxWe47IFIWfaOoNn5\nHBjyoIRmTIb5nc5rn82eWfpzMdRQFBfMNFiR8tz9gDXuqrxPlnnoe7ZW1/sJkz2W\nRQT2IF+ZK9gOA+2nNpUlPLnpp7vVBrekO+0TFXBEddzESQHNVb7nH7OpTNxGL3XZ\nmtYo/xnPAgMBAAECggEAI7EZhZT7byPJ8pb9073uKCjU7Q43RY7qQK8ec0fERr91\nlwpF1bEBPiWUS31nqDLNhB7Rl/miCsA2wT6GBr7W55z3dAG9gsfRSDcGuFpRETkA\nJN5M1lWJx4AOVlA0MLbhB2Ra2nBEoJ/iQ0QB4kFAHgi04F1UYoAvLOPYg4fJQxKr\n2Xb4ELbQBa1m9HUvqwE3r4ynxbGfl2BFOwSzXcqEwyi6fcwRoghOlvBU2A/EdMMS\n22oE2+G1izBF1a6a9M7CtAbdUvf86jLQAoFis4/lWLQNk80yRY3XuAn9vSUkTKIh\n7srlGCDqyQxG+2Oaf3uq8ruY0aUl4n0aCtzlU9Bl8QKBgQD/tnIhwEMcCinP59GL\nSXq82MIgOQDaqaVdn5TDBHtu0QyKbWmyJ77pHpxXzlGO4kh4pbG76qKRCQWv0mhC\n+rp9I2m1Bz8gYsY1HKcFuEgdi5SCPUlHUUeX7NL/VKayYJModS7DEVUMY4MIavtE\nfc66K/ShSiQJd53R0T9Dk9QJ/wKBgQD1bdeeMdiFY6NCgLZZrssLcZNsjBxzpHyC\nVqjgX8YQWKrtcQzAn78foEZCpgpJaZGgBdIrYRjoZ4gBYf4sjy6qC3GsDJST7Bjc\n69KUH6GiXucUkXup+lUSEhErHhUiW/vvbPQG+rwxi9dy0RWq4EIe1uw/X3ErkiJj\nfl8whrbQMQKBgQDFyFXqqQy/KVVBy6oVs9XNL1KnHa/9cO3Ixl+Hn3XhNqwefZYd\nCATvxo9ikuAeRgOL3YzlLgxjZbkSTwn5lHidxcBDFsHKyNtJxUmicPDGeWl6evCs\nyr83USO5/b2Zhn0L8+chVcyUcnutDSIfzbcR5GGoRvIsqGpXGSN3n2WH/QKBgCem\no1svemeyfUHVQaCjmLI0mzjCOiaEwIjeL1JwprMlYBgUV5cXN+2IG1HROYA6yggs\naJQRj9CcSWDP0Byq1UMrriW5spdjYXDvuImtwpNU+chc6LnBc9UDjjqFFa0DZ2R7\nGcG26IioqxolpXaB3KzW1Dw40zPS3DNuyzovyYFBAoGBAOUCpj8bPQ9cIgc9w6DA\nyCMwY/kJbjzUkGKbh7wW9kLlSn1JJxoWXWNI8VuO61lXZe4B3hFLZwLulWfSuqAc\nDMw/s4/N0RS9oSCvrp897dR4clUH+5TFWCykMuv259dgDKS17vMG/ThnBh0z2GXN\nK3CwbNp2yAuafApSX4qB0Y6+\n-----END PRIVATE KEY-----\n",
+  "client_email": "nexlynk-11@sonic-verbena-447607-m0.iam.gserviceaccount.com",
+  "client_id": "110974715602875468124",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nexlynk-11%40sonic-verbena-447607-m0.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
