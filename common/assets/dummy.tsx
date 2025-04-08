@@ -45,12 +45,7 @@ export const navLinks = [
   {
     id: 3,
     name: "Wishlists",
-    link: "/for-school",
-  },
-  {
-    id: 4,
-    name: "Help",
-    link: "/about-us",
+    link: "/wishlist",
   }
 ];
 

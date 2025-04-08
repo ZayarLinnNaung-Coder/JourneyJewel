@@ -26,8 +26,8 @@ const Navbar = () => {
   }, [open]);
 
   return (
-      <div className=" bg-white py-2 flex items-center justify-between max-w-full container">
-          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-indigo-500 via-[#8048ECAA] to-[#695FF0DD] text-transparent bg-clip-text">
+      <div className=" bg-white py-7 flex items-center justify-between max-w-full container">
+          <h1 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-indigo-500 via-[#8048ECAA] to-[#695FF0DD] text-transparent bg-clip-text">
               JourneyJewel
           </h1>
 

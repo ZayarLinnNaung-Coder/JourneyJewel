@@ -57,7 +57,7 @@ const PlacesPage = () => {
               <div className="flex justify-between flex-wrap mt-10">
                   {places.map((item) => (
                       <div
-                          className="w-[32%] my-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                          className="w-full md:w-[23%] my-3 bg-white border border-gray-200 rounded-lg shadow-sm">
                           <a href="#">
                               <img className="rounded-t-lg"
                                    src="https://publish.purewow.net/wp-content/uploads/sites/2/2024/02/most-beautiful-places-in-the-world_Seljalandsfoss-Iceland.jpg?fit=1360%2C800"
