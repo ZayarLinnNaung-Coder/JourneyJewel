@@ -1,11 +1,35 @@
 "use client";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useGSAP} from "@gsap/react";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-const HeroFeatureSection = () => {
+const PlaceDetails = () => {
+
+
+    const [place, setPlace] = useState();
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchBenefits = async () => {
+            try {
+                const placeId = localStorage.getItem("place") as string
+                const response = await fetch("http://localhost:8090/api/places/" + placeId);  // Replace with your real API URL
+                const data = await response.json();
+                setPlace(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchBenefits().then(r => console.log(r));
+    }, []);
+
+    if (loading) {
+        return <div className="text-center py-10">Loading...</div>;
+    }
 
     return (
         <div className="mt-10">
@@ -16,9 +40,9 @@ const HeroFeatureSection = () => {
                         <div className="grid md:grid-cols-1">
                             <img src="https://images.travelandleisureasia.com/wp-content/uploads/sites/4/2023/05/08123618/lake-como.jpeg" alt="" className="rounded-lg w-full h-[200px] md:h-[400px]"/>
                             <div className="m-0 mt-5">
-                                <p className="text-[32px] font-bold">Yangon, Myanmar</p>
+                                <p className="text-[32px] font-bold">{place.name}</p>
                                 <p className="mt-5 text-justify">
-                                    Chaung Thar is one of Myanmar’s most popular beach destinations — a laid-back coastal town located on the Bay of Bengal, in Ayeyarwady Region, about 6 hours’ drive west of Yangon. It’s known for its accessible location, local vibes, and relatively affordable accommodations compared to more upscale beaches like Ngapali.
+                                    {place.description}
                                 </p>
 
                                 <p className="mt-10">
@@ -30,7 +54,7 @@ const HeroFeatureSection = () => {
                                                   stroke-width="2"
                                                   d="M10.0001 13c0-.8883.4022-2.3826 1-3.27163M18.05 14c0 3.3137-2.6862 6-6 6-3.31366 0-5.99995-2.6863-5.99995-6S8.73634 4 12.05 4c3.3138 0 6 6.6863 6 10Z"/>
                                         </svg>
-                                        <span>Yangon, Myanmar</span>
+                                        <span>{place.place}</span>
 
                                     </div>
                                     <span className="flex mt-2">
@@ -40,7 +64,7 @@ const HeroFeatureSection = () => {
                                           <path stroke="#555" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2"/>
                                         </svg>
-                                        <span className="text-blue-900 mr-2 font-bold">500000</span> MMK
+                                        <span className="text-blue-900 mr-2 font-bold">{place.minBudget}</span> MMK
                                     </span>
                                 </p>
                             </div>
@@ -267,4 +291,4 @@ const HeroFeatureSection = () => {
     );
 };
 
-export default HeroFeatureSection;
+export default PlaceDetails;

@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSection from "./home";
-import PopularDestinations from "./benefits";
+import PopularDestinations from "./popularDestinations";
 import HowWorks from "./app-features";
 import Feedback from "./how-work";
 import ContactUs from "./faq";
