@@ -2,14 +2,23 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
+// Define the type for your place data
+interface Place {
+  id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  // Add other properties that come from your API
+}
+
 const PopularDestinations = () => {
-  const [benefitData, setBenefitData] = useState([]);
+  const [benefitData, setBenefitData] = useState<Place[]>([]); // Type the state
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBenefits = async () => {
       try {
-        const response = await fetch("http://localhost:8090/api/places?page=0&size=6");  // Replace with your real API URL
+        const response = await fetch("http://localhost:8090/api/places?page=0&size=6");
         const data = await response.json();
         setBenefitData(data.content);
       } catch (error) {
@@ -26,6 +35,15 @@ const PopularDestinations = () => {
     return <div className="text-center py-10">Loading...</div>;
   }
 
+  const routeToageDetails = (id: string) => {
+    localStorage.setItem("place", id);
+    window.location.href = "/place-details";
+  };
+
+  const routeToPlaces = () => {
+    window.location.href = "/places";
+  };
+
   return (
       <div className="py-10 container max-w-full bg-[#fafafa]">
         <div className="">
@@ -39,9 +57,10 @@ const PopularDestinations = () => {
           {benefitData.map((item) => (
               <div
                   key={item.id}
-                  className="bg-white w-full md:w-[30%] rounded-lg p-5 ml-3 mr-3 mb-6 shadow-sm"
+                  className="bg-white w-full md:w-[30%] rounded-lg p-5 ml-3 mr-3 mb-6 shadow-sm cursor-pointer hover:shadow-md transition-shadow duration-200"
+                  onClick={() => routeToageDetails(item.id)}
               >
-                <img src={item.imageUrl} alt={item.name} />
+                <img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover rounded-lg" />
                 <div className="p-3">
                   <p className="font-bold mb-3">{item.name}</p>
                   <span>{item.description}</span>
@@ -58,9 +77,6 @@ const PopularDestinations = () => {
                     >
                       <path
                           stroke="#0000FF99"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
                           d="M19 12H5m14 0-4 4m4-4-4-4"
                       />
                     </svg>
@@ -70,7 +86,10 @@ const PopularDestinations = () => {
           ))}
         </div>
         <div className="flex justify-center mt-5">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+          <button
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200"
+              onClick={routeToPlaces}
+          >
             View All Destinations
           </button>
         </div>

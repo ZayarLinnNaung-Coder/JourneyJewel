@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {useRouter} from "next/navigation";
+import WishlistManager from "../../common/utils/WishlistManager"
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -25,11 +25,15 @@ const PlacesPage = () => {
 
     const [places, setPlaces] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [wishlistItems, setWishlistItems] = useState(new Set()); // Add wishlist state
 
     useEffect(() => {
+        // Load wishlist on component mount
+        setWishlistItems(WishlistManager.getWishlistSet());
+
         const fetchBenefits = async () => {
             try {
-                const response = await fetch("http://localhost:8090/api/places?page=0&size=6");  // Replace with your real API URL
+                const response = await fetch("http://localhost:8090/api/places?page=0&size=99999");  // Replace with your real API URL
                 const data = await response.json();
                 setPlaces(data.content);
             } catch (error) {
@@ -51,6 +55,21 @@ const PlacesPage = () => {
         window.location.href = "/place-details"
     }
 
+    // Enhanced wishlist handler with state management
+    const handleWishlistToggle = (id) => {
+        const wasAdded = WishlistManager.toggleWishlist(id);
+
+        // Update local state for immediate UI feedback
+        setWishlistItems(WishlistManager.getWishlistSet());
+
+        // Optional: Show feedback
+        if (wasAdded) {
+            console.log('❤️ Added to wishlist!');
+        } else {
+            console.log('💔 Removed from wishlist!');
+        }
+    };
+
     return (
         <div ref={containerRef}>
             <div className="our-fe pb-10 max-w-full container">
@@ -66,9 +85,9 @@ const PlacesPage = () => {
                         >
                             <a href="#">
                                 <img
-                                    className="rounded-t-lg w-[100%] h-[200px]"
+                                    className="rounded-t-lg w-[100%] h-[200px] object-cover"
                                     src={item.imageUrl}
-                                    alt=""
+                                    alt={item.name}
                                 />
                             </a>
                             <div className="p-5">
@@ -83,14 +102,27 @@ const PlacesPage = () => {
                                 <div className="flex items-center justify-between">
                                     <a
                                         onClick={() => routeToageDetails(item.id)}
-                                        className="my-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                                        className="my-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer"
                                     >
                                         See Details
                                         <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                                         </svg>
                                     </a>
-                                    <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <svg
+                                        className={`w-6 h-6 cursor-pointer transition-all duration-200 transform hover:scale-110 ${
+                                            wishlistItems.has(item.id)
+                                                ? 'text-red-500 fill-red-500'
+                                                : 'text-gray-800 hover:text-red-300'
+                                        }`}
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        fill={wishlistItems.has(item.id) ? "currentColor" : "none"}
+                                        viewBox="0 0 24 24"
+                                        onClick={() => handleWishlistToggle(item.id)}
+                                    >
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
                                     </svg>
                                 </div>

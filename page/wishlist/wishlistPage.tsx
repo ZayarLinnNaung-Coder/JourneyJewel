@@ -1,50 +1,32 @@
+"use client";
 import WishlistCard from "./wishlistCard";
+import {useEffect, useState} from "react";
+import WishlistManager from "@/common/utils/WishlistManager";
 
 const WishlistPage = () => {
-    const wishlist = [
-        {
-            title: "Luxury Water Villa",
-            location: "Maldives",
-            price: 549,
-            rating: 4.9,
-            imageUrl: "https://images.travelandleisureasia.com/wp-content/uploads/sites/4/2023/05/08123703/lake-como-1.jpeg?tr=w-480,f-jpg,pr-true",
-        },
-        {
-            title: "Sunset Villa",
-            location: "Santorini, Greece",
-            price: 429,
-            rating: 4.8,
-            imageUrl: "https://images.travelandleisureasia.com/wp-content/uploads/sites/4/2023/05/08123703/lake-como-1.jpeg?tr=w-480,f-jpg,pr-true",
-        },
-        {
-            title: "Luxury Water Villa",
-            location: "Maldives",
-            price: 549,
-            rating: 4.9,
-            imageUrl: "https://images.travelandleisureasia.com/wp-content/uploads/sites/4/2023/05/08123703/lake-como-1.jpeg?tr=w-480,f-jpg,pr-true",
-        },
-        {
-            title: "Sunset Villa",
-            location: "Santorini, Greece",
-            price: 429,
-            rating: 4.8,
-            imageUrl: "https://images.travelandleisureasia.com/wp-content/uploads/sites/4/2023/05/08123703/lake-como-1.jpeg?tr=w-480,f-jpg,pr-true",
-        },
-        {
-            title: "Luxury Water Villa",
-            location: "Maldives",
-            price: 549,
-            rating: 4.9,
-            imageUrl: "https://images.travelandleisureasia.com/wp-content/uploads/sites/4/2023/05/08123703/lake-como-1.jpeg?tr=w-480,f-jpg,pr-true",
-        },
-        {
-            title: "Sunset Villa",
-            location: "Santorini, Greece",
-            price: 429,
-            rating: 4.8,
-            imageUrl: "https://images.travelandleisureasia.com/wp-content/uploads/sites/4/2023/05/08123703/lake-como-1.jpeg?tr=w-480,f-jpg,pr-true",
-        },
-    ];
+
+    const [wishlist, setWishlist] = useState([]);
+    const [wishlistItems, setWishlistItems] = useState(new Set()); // Add wishlist state
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Load wishlist on component mount
+        setWishlistItems(WishlistManager.getWishlistSet());
+
+        const fetchBenefits = async () => {
+            try {
+                const response = await fetch("http://localhost:8090/api/places?page=0&size=9999");  // Replace with your real API URL
+                const data = await response.json();
+                setWishlist(data.content);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchBenefits().then(r => console.log(r));
+    }, []);
 
     return (
         <div className="p-6 mt-5">
