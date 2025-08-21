@@ -46,6 +46,11 @@ export const navLinks = [
     id: 3,
     name: "Wishlists",
     link: "/wishlist",
+  },
+  {
+    id: 4,
+    name: "Packages",
+    link: "/packages",
   }
 ];
 
