@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import WishlistManager from "../../common/utils/WishlistManager"
+import ContactModal from "@/page/model/ContactModal";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -38,6 +39,12 @@ const MerchantsAndPackagesPage = () => {
     const [merchantPackages, setMerchantPackages] = useState({});
     const [loading, setLoading] = useState(true);
     const [wishlistItems, setWishlistItems] = useState(new Set());
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+    const handleContactClick = () => {
+        console.log('clicked')
+        setIsContactModalOpen(true);
+    };
 
     useEffect(() => {
         const initializePage = async () => {
@@ -394,10 +401,10 @@ const MerchantsAndPackagesPage = () => {
                                                                 )}
 
                                                                 <button
-                                                                    onClick={() => routeToPackageDetails(pkg.id)}
+                                                                    onClick={handleContactClick}
                                                                     className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 font-medium transition-all duration-300 transform hover:scale-105"
                                                                 >
-                                                                    Book This Package
+                                                                    Contact Now
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -414,6 +421,19 @@ const MerchantsAndPackagesPage = () => {
                                 </div>
                             ))}
                         </div>
+
+                        <ContactModal
+                            isOpen={isContactModalOpen}
+                            onClose={() => setIsContactModalOpen(false)}
+                            contactInfo={{
+                                name: "Journey Jewel",
+                                phone: "+1-234-567-8900",
+                                email: "info@beautifulresort.com",
+                                address: "123 Beach Road, Paradise Island",
+                                hours: "24/7 Available",
+                                website: "https://journeyjewel.com"
+                            }}
+                        />
 
                         {/* Empty States */}
                         {(Array.isArray(filteredMerchants) && filteredMerchants.length === 0 && searchQuery) && (

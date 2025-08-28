@@ -88,9 +88,9 @@ const PlacesPage = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:8090/api/places/search?query=${searchQuery}`);
+            const response = await fetch(`http://localhost:8090/api/places?name=${searchQuery}`);
             const data = await response.json();
-            setFilteredPlaces(data);
+            setFilteredPlaces(data.content);
         } catch (error) {
             console.error("Error searching places:", error);
         } finally {
@@ -141,7 +141,7 @@ const PlacesPage = () => {
                                     Search
                                 </button>
                             </div>
-                            
+
                             {showSuggestions && suggestions.length > 0 && (
                                 <div className="absolute w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
                                     {suggestions.map((suggestion, index) => (
@@ -177,7 +177,10 @@ const PlacesPage = () => {
                                             </h5>
                                         </a>
                                         <p className="mb-3 font-normal text-gray-700">
-                                            {item.description}
+                                            {item.description.length > 100
+                                                ? item.description.slice(0, 100).split(' ').slice(0, -1).join(' ') + '...'
+                                                : item.description
+                                            }
                                         </p>
                                         <div className="flex items-center justify-between">
                                             <a

@@ -1,10 +1,39 @@
 "use client";
 import Image from "next/image";
 import travel1 from "@/public/travel1.jpg";
+import ContactModal from "@/page/model/ContactModal";
+import React, {useState} from "react";
 
 const HeroSection = () => {
+
+    const routeToPlaces = () => {
+        window.location.href = "/places";
+    };
+
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+    const handleContactClick = () => {
+        console.log('click')
+        setIsContactModalOpen(true);
+    };
+
     return (
+
         <div className="container max-w-full relative pb-5 md:min-h-[70vh] overflow-hidden lg:min-h-[30vh] xl:min-h-[80vh] lg:grid lg:grid-cols-4">
+
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={() => setIsContactModalOpen(false)}
+                contactInfo={{
+                    name: "Journey Jewel",
+                    phone: "+1-234-567-8900",
+                    email: "info@beautifulresort.com",
+                    address: "123 Beach Road, Paradise Island",
+                    hours: "24/7 Available",
+                    website: "https://journeyjewel.com"
+                }}
+            />
+
             <div className="col-span-2 h-[90vh] flex flex-col justify-center">
                 <h1 className="text-[#333333] font-bold text-[22px] md:text-[30px] lg:text-[32px] xl:text-[45px]">
                     Discover Your Next Adventure
@@ -17,6 +46,7 @@ const HeroSection = () => {
                 <div className="mt-10 md:mt-8 flex w-full md:justify-start justify-center items-center gap-2">
                     <button
                         type="button"
+                        onClick={routeToPlaces}
                         className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:ring-[#2557D6]/50 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#2557D6]/50 me-2 mb-2 transition-transform transform hover:scale-105"
                     >
                         <svg
@@ -113,7 +143,7 @@ const HeroSection = () => {
                         <span>Next Trip</span>
                         <span>Chaung Thar, Myanmar</span>
                     </div>
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Book Now</button>
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={handleContactClick}>Contact Now</button>
                 </div>
             </div>
 
@@ -141,7 +171,9 @@ const HeroSection = () => {
                         <span>Next Trip</span>
                         <span>Chaung Thar, Myanmar</span>
                     </div>
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Book Now</button>
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                            onClick={handleContactClick}
+                    >Contact Now</button>
                 </div>
 
             </div>

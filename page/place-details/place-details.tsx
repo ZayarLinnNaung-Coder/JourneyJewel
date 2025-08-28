@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useGSAP} from "@gsap/react";
 import {gsap} from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import ContactModal from "@/page/model/ContactModal";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -57,6 +58,11 @@ const PlaceDetails = () => {
     const [roomTypeDropdownOpen, setRoomTypeDropdownOpen] = useState(false);
     const [mealPlanDropdownOpen, setMealPlanDropdownOpen] = useState(false);
 
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const handleContactClick = () => {
+        setIsContactModalOpen(true);
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -68,12 +74,12 @@ const PlaceDetails = () => {
                 setPlace(placeData);
 
                 // Fetch transportations
-                const transportResponse = await fetch("http://localhost:8090/api/transportations?size=99999&page=0");
+                const transportResponse = await fetch("http://localhost:8090/api/transportations?placeId="+ placeId +"&size=99999&page=0");
                 const transportData = await transportResponse.json();
                 setTransportations(transportData.content || []);
 
                 // Fetch hotels
-                const hotelResponse = await fetch("http://localhost:8090/api/hotels?size=99999&page=0");
+                const hotelResponse = await fetch("http://localhost:8090/api/hotels?placeId="+ placeId +"&ize=99999&page=0");
                 const hotelData = await hotelResponse.json();
                 setHotels(hotelData.content || []);
 
@@ -105,7 +111,7 @@ const PlaceDetails = () => {
     };
 
     const getTotalPrice = () => {
-        const basePrice = place ? parseFloat(place.minBudget) * totalPeople : 0;
+        const basePrice = 0;
         return basePrice + getTransportationPrice() + getHotelPrice() + getMealPrice();
     };
 
@@ -178,15 +184,6 @@ const PlaceDetails = () => {
                                         </svg>
                                         <span>{place.place}</span>
                                     </div>
-                                    <span className="flex mt-2">
-                                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                             viewBox="0 0 24 24">
-                                          <path stroke="#555" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                                d="M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2"/>
-                                        </svg>
-                                        <span className="text-blue-900 mr-2 font-bold">{place.minBudget}</span> MMK
-                                    </span>
                                 </p>
                             </div>
 
@@ -479,10 +476,6 @@ const PlaceDetails = () => {
 
                             {/* Pricing */}
                             <div className="prices my-5">
-                                <div className="flex justify-between mb-1">
-                                    <p>Base Price ({totalPeople} people)</p>
-                                    <p>{(parseFloat(place.minBudget) * totalPeople).toLocaleString()} MMK</p>
-                                </div>
                                 {selectedTransportation && (
                                     <div className="flex justify-between mb-1">
                                         <p>Transportation ({selectedTransportation.name})</p>
@@ -507,13 +500,26 @@ const PlaceDetails = () => {
                                 </div>
                             </div>
 
-                            <button className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                                Book Now
+                            <button className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors" onClick={handleContactClick}>
+                                Contact Now
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={() => setIsContactModalOpen(false)}
+                contactInfo={{
+                    name: "Journey Jewel",
+                    phone: "+1-234-567-8900",
+                    email: "info@beautifulresort.com",
+                    address: "123 Beach Road, Paradise Island",
+                    hours: "24/7 Available",
+                    website: "https://journeyjewel.com"
+                }}
+            />
 
             {/* Image Modal/Lightbox */}
             {showImageModal && (

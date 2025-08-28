@@ -63,7 +63,12 @@ const PopularDestinations = () => {
                 <img src={item.imageUrl} alt={item.name} className="w-full h-48 object-cover rounded-lg" />
                 <div className="p-3">
                   <p className="font-bold mb-3">{item.name}</p>
-                  <span>{item.description}</span>
+                  <span>
+                      {item.description.length > 100
+                          ? item.description.slice(0, 100).split(' ').slice(0, -1).join(' ') + '...'
+                          : item.description
+                      }
+                  </span>
                   <div className="flex mt-5">
                     <span className="me-1 text-blue-900">Learn More</span>
                     <svg
