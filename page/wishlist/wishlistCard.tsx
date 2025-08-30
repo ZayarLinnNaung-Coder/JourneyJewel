@@ -66,8 +66,8 @@ const WishlistCard: React.FC<WishlistCardProps> = ({
                 onClose={() => setIsContactModalOpen(false)}
                 contactInfo={{
                     name: "Journey Jewel",
-                    phone: "+1-234-567-8900",
-                    email: "info@beautifulresort.com",
+                    phone: "095154403",
+                    email: "hsumyatyadanar@gmail.com",
                     address: "123 Beach Road, Paradise Island",
                     hours: "24/7 Available",
                     website: "https://journeyjewel.com"
