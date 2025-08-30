@@ -171,6 +171,19 @@ const PlacesPage = () => {
                                         />
                                     </a>
                                     <div className="p-5">
+                                        {item.isAvailable === 'true' ? (
+                                                                            <span
+                                                                                className="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium bg-green-50 text-green-700 border border-green-200 hover:scale-105 transition-transform duration-200">
+                                            Available
+                                        </span>
+                                                                        ) : (
+                                                                            <span
+                                                                                className="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 border border-red-200 hover:scale-105 transition-transform duration-200">
+                                            Not Available
+                                        </span>
+                                                                        )}
+                                    </div>
+                                    <div className="p-5">
                                         <a href="#">
                                             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                                                 {item.name}
@@ -188,8 +201,11 @@ const PlacesPage = () => {
                                                 className="my-5 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer"
                                             >
                                                 See Details
-                                                <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                                <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                                    <path stroke="currentColor" strokeLinecap="round"
+                                                          strokeLinejoin="round" strokeWidth="2"
+                                                          d="M1 5h12m0 0L9 1m4 4L9 9"/>
                                                 </svg>
                                             </a>
                                             <svg
@@ -206,7 +222,9 @@ const PlacesPage = () => {
                                                 viewBox="0 0 24 24"
                                                 onClick={() => handleWishlistToggle(item.id)}
                                             >
-                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
+                                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
+                                                      strokeWidth="2"
+                                                      d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
                                             </svg>
                                         </div>
                                     </div>
